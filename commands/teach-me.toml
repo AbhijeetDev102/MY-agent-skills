@@ -1,0 +1,16 @@
+description = "Deeply understand an AI-generated or unfamiliar feature through strict Socratic mastery"
+
+prompt = """
+Invoke the teach-me skill.
+
+Before teaching anything, inspect the actual implementation in the codebase:
+1. Locate and read the entry points, core logic, state/data layers, and side effects of the target feature or component. Record exact `file:line` anchors — never explain from filenames, types, or guesses.
+2. Run Step 1 (Scope & Baseline Calibration): present `TARGET SCOPE`, `FILES IN SCOPE`, `OUT OF SCOPE`, the 4 locked `MASTERY MAP` layers, and one focused calibration question, then stop and wait for the learner's response.
+3. Teach one compact chunk (~80-180 words plus at most one diagram or 5-15 line `file:line` snippet) at a time across the 4 locked layers in strict order:
+   - Layer 1: Boundary & Mental Model
+   - Layer 2: Concrete Execution Trace (runtime order with concrete values)
+   - Layer 3: Under the Hood & "Why This Way?" (mechanics, trade-offs, and AI-introduced complexity/smells)
+   - Layer 4: Ownership Challenge (diagnose, modify, or Feynman synthesis)
+4. End every teaching turn with exactly ONE Socratic gate question and stop your turn. Never accept hollow confirmations ("got it", "makes sense", "next") as proof of mastery unless the user issues an explicit override, in which case mark the skipped layer `[~]`.
+5. Stay strictly read-only throughout — never edit or refactor files while teaching. After Layer 4 passes, deliver the terminal Mastery Recap, offer optional next paths (such as saving `docs/learning/<feature-slug>.md`), and stop without writing files unless confirmed.
+"""

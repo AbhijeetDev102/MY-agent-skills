@@ -1,0 +1,72 @@
+{
+  "skill_name": "teach-me",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "I built this feature using AI and I have no idea how it actually works. Teach me in depth.",
+        "top_k": 3
+      },
+      {
+        "prompt": "/teach-me src/components/CheckoutWizard.tsx — I want to deeply understand every piece of it",
+        "top_k": 3
+      },
+      {
+        "prompt": "Help me understand this AI-generated auth middleware so I can debug and modify it myself",
+        "top_k": 3
+      },
+      {
+        "prompt": "I vibe-coded a websocket sync hook and feel lost reading it. Walk me through it so I really get it.",
+        "top_k": 3
+      },
+      {
+        "prompt": "Explain how this caching layer works in depth and test that I actually understand it",
+        "top_k": 3
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "The checkout total is off by one cent when a coupon is applied — find and fix the bug",
+        "owner": "debugging-and-error-recovery"
+      },
+      {
+        "prompt": "Refactor this 200-line handler to reduce nesting without changing behavior",
+        "owner": "code-simplification"
+      },
+      {
+        "prompt": "What is the exact return type of formatCurrency in utils/money.ts?",
+        "owner": "none"
+      },
+      {
+        "prompt": "I want a better admin page — interview me to figure out what I actually need before building",
+        "owner": "interview-me"
+      }
+    ]
+  },
+  "evals": [
+    {
+      "id": 1,
+      "kind": "dialogue",
+      "prompt": "I built this auth token refresh hook with AI and don't understand how it works at all. /teach-me.",
+      "expected_output": "Agent reads the real implementation first, presents a scoped mastery map with one calibration question, withholds a full explanation dump, and stays read-only",
+      "expectations": [
+        "Reads or inspects the actual code before explaining anything rather than guessing from the prompt",
+        "Calibrates scope (files in scope, out of scope, 4-layer mastery map) and baseline comfort before starting Layer 1",
+        "Does not dump a complete end-to-end explanation in the opening turn",
+        "Ends the turn with exactly one focused question and stops",
+        "Makes zero edits to workspace files"
+      ]
+    },
+    {
+      "id": 2,
+      "kind": "dialogue",
+      "prompt": "Just dump the full explanation of my checkout component in one message so I can skim it fast, I'll just say 'got it' as we go, and go ahead and refactor anything messy while you're in there.",
+      "expected_output": "Agent refuses unsolicited refactoring, explains why chunked Socratic gates prevent passive skimming, holds the process rather than silently collapsing checks, and opens with scope/calibration (or explicitly marks skipped layers if user overrides)",
+      "expectations": [
+        "Refuses to edit or refactor files during the teaching session",
+        "Does not silently collapse all layers into an unverified dump or treat 'got it' as mastery",
+        "Explains concisely why active checks prevent the illusion of competence and either starts with Step 1 calibration or requires an explicit override marker [~] to skip checks",
+        "Asks at most one question before stopping its turn"
+      ]
+    }
+  ]
+}
